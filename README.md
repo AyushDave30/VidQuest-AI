@@ -1,1 +1,151 @@
-# Youtube-RAG-Chatbot
+# 🎥 YouTube RAG Chatbot
+
+A **Retrieval-Augmented Generation (RAG)** chatbot that lets you chat with any YouTube video using its transcript. Ask questions about video content and get intelligent responses with timestamp references!
+
+![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white)
+![Python](https://img.shields.io/badge/Python-3.8+-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![OpenAI](https://img.shields.io/badge/OpenAI-412991?style=for-the-badge&logo=openai&logoColor=white)
+
+## ✨ Features
+
+- 🎯 **Smart Q&A**: Ask natural language questions about any YouTube video
+- ⏰ **Timestamp References**: Get exact timestamps for source material
+- 📋 **Video Summarization**: Generate concise summaries with key points
+- 🔍 **Semantic Search**: Find relevant content using AI-powered search
+- 💬 **Chat Interface**: Interactive conversation with chat history
+- 🎨 **Modern UI**: Clean, responsive design with dark theme
+
+## 🚀 Quick Start
+
+### 1. Clone & Install
+```bash
+git clone https://github.com/ayushdave1369/youtube-rag-chatbot.git
+cd youtube-rag-chatbot
+pip install -r requirements.txt
+```
+
+### 2. Setup Environment
+Create `.env` file:
+```env
+OPENAI_API_KEY=your_openai_api_key_here
+```
+
+### 3. Run Application
+```bash
+streamlit run app.py
+```
+
+## 📦 Requirements
+
+```txt
+streamlit>=1.28.0
+openai>=1.3.0
+langchain>=0.1.0
+langchain-openai>=0.0.5
+langchain-community>=0.0.10
+youtube-transcript-api>=0.6.2
+faiss-cpu>=1.7.4
+python-dotenv>=1.0.0
+yt-dlp>=2023.12.30
+```
+
+## 🎯 How to Use
+
+1. **Enter YouTube URL**: Paste any YouTube video URL
+2. **Wait for Processing**: App extracts and processes the transcript
+3. **Ask Questions**: Type questions about the video content
+4. **View Sources**: Click source buttons to see timestamp references
+5. **Generate Summary**: Use summary button for key points overview
+
+### Example Questions
+- "What is this video about?"
+- "What are the main points discussed?"
+- "What examples are given?"
+- "What conclusions does the speaker draw?"
+
+## 🛠️ Technology Stack
+
+- **Frontend**: Streamlit
+- **LLM**: OpenAI GPT-4o-mini
+- **Embeddings**: OpenAI text-embedding-3-small
+- **Vector Store**: FAISS
+- **Framework**: LangChain
+- **Transcript**: youtube-transcript-api, yt-dlp
+
+## 🚀 Deployment
+
+### ✅ Live App
+🎥 **[Try the YouTube RAG Chatbot](https://youtube-rag-chatbot.streamlit.app/)**
+
+### Streamlit Cloud (For Your Own Deployment)
+1. Push code to GitHub
+2. Connect to Streamlit Cloud
+3. Add `OPENAI_API_KEY` in secrets
+4. Deploy!
+
+## 🐛 Troubleshooting
+
+| Issue | Solution |
+|-------|----------|
+| "Transcript not available" | Try videos with captions (TED, Khan Academy) |
+| OpenAI API errors | Check API key and account balance |
+| FAISS installation issues | Use `pip install faiss-cpu --no-cache` |
+| Memory issues | Try shorter videos or reduce chunk size |
+
+## 📈 Performance
+
+- **Processing Time**: 5-15 seconds per video
+- **Memory Usage**: 200-500 MB
+- **Supported Videos**: Any public YouTube video with captions
+
+## 🎯 Supported Content
+
+✅ **Works with:**
+- Educational videos
+- Tutorials and how-tos
+- Interviews and talks
+- Videos with closed captions
+
+❌ **Doesn't work with:**
+- Videos without captions
+- Private/unlisted videos
+- Music videos (no meaningful captions)
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create feature branch: `git checkout -b feature-name`
+3. Make changes and test
+4. Submit pull request
+
+## 🔒 Privacy
+
+- No data is stored permanently
+- Transcripts processed in memory only
+- API keys handled securely
+- All data cleared when switching videos
+
+## 🔮 Future Features
+
+- [ ] Multi-language support
+- [ ] Batch video processing
+- [ ] Export chat history
+- [ ] Voice input for questions
+- [ ] YouTube playlist integration
+
+## 🙏 Acknowledgments
+
+- OpenAI for GPT models
+- LangChain for RAG framework
+- Streamlit for web interface
+- YouTube Transcript API developers
+- **Inspired by CampusX YouTube Channel**
+
+## 📞 Support
+
+- 🐛 **Issues**: [GitHub Issues](https://github.com/ayushdave1369/youtube-rag-chatbot/issues)
+- 📧 **Email**: ayushdave1369@gmail.com
+
+---
+
+⭐ **Star this repo if you found it helpful!**
