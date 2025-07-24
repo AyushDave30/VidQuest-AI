@@ -8,8 +8,10 @@ from langchain_community.vectorstores import FAISS
 from datetime import timedelta
 import requests
 import json
+import requests
+import xml.etree.ElementTree as ET
 import os
-import ssl
+
 ssl._create_default_https_context = ssl._create_unverified_context
 
 # -----------------------------
@@ -89,34 +91,37 @@ if "clear_input" not in st.session_state:
 # 4. Helper Functions
 # -----------------------------
 
+
 @st.cache_data(show_spinner="📥 Fetching transcript via ScraperAPI...")
 def get_transcript(video_id: str):
     scraper_key = os.getenv("SCRAPER_API_KEY")
 
-    # YouTube transcript endpoint (JSON format)
-    youtube_transcript_url = f"https://www.youtube.com/api/timedtext?lang=en&v={video_id}&fmt=json3"
+    # YouTube transcript endpoint (returns XML, not JSON)
+    youtube_transcript_url = f"https://www.youtube.com/api/timedtext?lang=en&v={video_id}"
     proxy_url = f"http://api.scraperapi.com?api_key={scraper_key}&url={youtube_transcript_url}"
 
     response = requests.get(proxy_url)
     if response.status_code != 200:
         raise Exception(f"Failed to fetch transcript: {response.status_code}")
 
-    data = response.json()
-
-    if "events" not in data:
-        raise Exception("Transcript not available for this video.")
+    # ✅ Parse XML instead of JSON
+    root = ET.fromstring(response.text)
 
     timed_chunks = []
     all_text = []
 
-    for event in data["events"]:
-        if "segs" in event:
-            text = "".join(seg["utf8"] for seg in event["segs"])
-            start = event.get("tStartMs", 0) / 1000
+    for child in root.findall("text"):
+        text = (child.text or "").replace("\n", " ").strip()
+        start = float(child.attrib.get("start", 0))
+        if text:
             timed_chunks.append({"text": text, "start": start})
             all_text.append(text)
 
+    if not timed_chunks:
+        raise Exception("Transcript not available for this video.")
+
     return " ".join(all_text), timed_chunks
+
 
 @st.cache_resource(show_spinner="🔗 Building vector store...")
 def build_vector_store_from_text(_transcript: str):
