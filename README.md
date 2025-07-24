@@ -42,8 +42,8 @@ Perfect for students, researchers, and curious minds who want fast insights from
 
 ### 1. Clone & Install
 ```bash
-git clone https://github.com/ayushdave1369/vidquest-ai.git
-cd vidquest-ai
+git clone https://github.com/AyushDave30/VidQuest-AI.git
+cd VidQuest-AI
 pip install -r requirements.txt
 ```
 
