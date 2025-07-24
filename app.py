@@ -88,16 +88,35 @@ if "clear_input" not in st.session_state:
 # -----------------------------
 # 4. Helper Functions
 # -----------------------------
-@st.cache_data(show_spinner="📥 Fetching transcript...")
+
+@st.cache_data(show_spinner="📥 Fetching transcript via ScraperAPI...")
 def get_transcript(video_id: str):
-    # ✅ Force SSL to use certifi's CA bundle (fixes Streamlit Cloud issues)
-    ssl._create_default_https_context = lambda: ssl.create_default_context(cafile=certifi.where())
+    scraper_key = os.getenv("SCRAPER_API_KEY")
 
-    transcript_list = YouTubeTranscriptApi().fetch(video_id, languages=["en"])
+    # YouTube transcript endpoint (JSON format)
+    youtube_transcript_url = f"https://www.youtube.com/api/timedtext?lang=en&v={video_id}&fmt=json3"
+    proxy_url = f"http://api.scraperapi.com?api_key={scraper_key}&url={youtube_transcript_url}"
 
-    full_text = " ".join(chunk.text for chunk in transcript_list)
-    timed_chunks = [{"text": chunk.text, "start": chunk.start} for chunk in transcript_list]
-    return full_text, timed_chunks
+    response = requests.get(proxy_url)
+    if response.status_code != 200:
+        raise Exception(f"Failed to fetch transcript: {response.status_code}")
+
+    data = response.json()
+
+    if "events" not in data:
+        raise Exception("Transcript not available for this video.")
+
+    timed_chunks = []
+    all_text = []
+
+    for event in data["events"]:
+        if "segs" in event:
+            text = "".join(seg["utf8"] for seg in event["segs"])
+            start = event.get("tStartMs", 0) / 1000
+            timed_chunks.append({"text": text, "start": start})
+            all_text.append(text)
+
+    return " ".join(all_text), timed_chunks
 
 @st.cache_resource(show_spinner="🔗 Building vector store...")
 def build_vector_store_from_text(_transcript: str):
