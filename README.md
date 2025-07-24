@@ -148,8 +148,8 @@ yt-dlp>=2023.12.30
 - [ ] YouTube playlist integration
 
 ## 🙏 Acknowledgments
-Inspired by CampusX YouTube Channel
-Thanks to OpenAI, LangChain, and Streamlit
+- Inspired by CampusX YouTube Channel
+- Thanks to OpenAI, LangChain, and Streamlit
 
 ## 📞 Contact
 Author: Ayush Dave
