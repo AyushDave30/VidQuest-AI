@@ -6,6 +6,10 @@ from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_openai import OpenAIEmbeddings, ChatOpenAI
 from langchain_community.vectorstores import FAISS
 from datetime import timedelta
+import requests
+import json
+import os
+import ssl
 
 # -----------------------------
 # 1. Load API Key
@@ -85,18 +89,14 @@ if "clear_input" not in st.session_state:
 # -----------------------------
 @st.cache_data(show_spinner="📥 Fetching transcript...")
 def get_transcript(video_id: str):
-    import os
-    from youtube_transcript_api import YouTubeTranscriptApi
-
-    scraper_key = os.getenv("SCRAPER_API_KEY")
-    os.environ["HTTP_PROXY"] = f"http://scraperapi:{scraper_key}@proxy-server.scraperapi.com:8001"
-    os.environ["HTTPS_PROXY"] = f"http://scraperapi:{scraper_key}@proxy-server.scraperapi.com:8001"
+    # ✅ Force SSL to use certifi's CA bundle (fixes Streamlit Cloud issues)
+    ssl._create_default_https_context = lambda: ssl.create_default_context(cafile=certifi.where())
 
     transcript_list = YouTubeTranscriptApi().fetch(video_id, languages=["en"])
-    full_text = " ".join(chunk.text for chunk in transcript_list)
-    timed_chunks = [{"text": t.text, "start": t.start} for t in transcript_list]
-    return full_text, timed_chunks
 
+    full_text = " ".join(chunk.text for chunk in transcript_list)
+    timed_chunks = [{"text": chunk.text, "start": chunk.start} for chunk in transcript_list]
+    return full_text, timed_chunks
 
 @st.cache_resource(show_spinner="🔗 Building vector store...")
 def build_vector_store_from_text(_transcript: str):
