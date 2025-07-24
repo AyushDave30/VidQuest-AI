@@ -10,8 +10,14 @@ from datetime import timedelta
 # -----------------------------
 # 1. Load API Key
 # -----------------------------
-load_dotenv()
-os.environ["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY")
+load_dotenv()  # works locally if .env is present
+
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY") or st.secrets.get("OPENAI_API_KEY")
+
+if not OPENAI_API_KEY:
+    st.error("❌ OPENAI_API_KEY not found! Please set it in .env (local) or Streamlit Secrets (cloud).")
+else:
+    os.environ["OPENAI_API_KEY"] = OPENAI_API_KEY
 
 # -----------------------------
 # 2. Streamlit Config & CSS
