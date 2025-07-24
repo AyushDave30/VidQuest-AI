@@ -85,8 +85,18 @@ if "clear_input" not in st.session_state:
 # -----------------------------
 @st.cache_data(show_spinner="📥 Fetching transcript...")
 def get_transcript(video_id: str):
+    import os
+    from youtube_transcript_api import YouTubeTranscriptApi
+
+    scraper_key = os.getenv("SCRAPER_API_KEY")
+    PROXIES = {
+        "http": f"http://scraperapi:{scraper_key}@proxy-server.scraperapi.com:8001",
+        "https": f"http://scraperapi:{scraper_key}@proxy-server.scraperapi.com:8001",
+    }
+
     api = YouTubeTranscriptApi()
-    transcript_list = api.fetch(video_id, languages=["en"])
+    transcript_list = api.fetch(video_id, languages=["en"], proxies=PROXIES)
+
     full_text = " ".join(chunk.text for chunk in transcript_list)
     timed_chunks = [{"text": t.text, "start": t.start} for t in transcript_list]
     return full_text, timed_chunks
