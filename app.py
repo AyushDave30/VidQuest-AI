@@ -29,7 +29,11 @@ else:
 # -----------------------------
 # 2. Streamlit Config & CSS
 # -----------------------------
-st.set_page_config(page_title="🎥 YouTube RAG Chatbot", page_icon="🎥", layout="wide")
+st.set_page_config(
+    page_title="VidQuest AI",
+    page_icon="🎥",
+    layout="wide",
+)
 st.markdown(
     """
 <style>
@@ -66,9 +70,11 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-st.title("🎥 YouTube RAG Chatbot (Alternative)")
-st.write("Chat with any YouTube video based on its transcript using yt-dlp!")
-
+st.title("🎥 VidQuest AI")
+st.write(
+    "**Chat with any YouTube video – Ask questions, get instant answers with timestamps, and summarize key points.**"
+)
+st.markdown("---")
 # -----------------------------
 # 3. Session State
 # -----------------------------
