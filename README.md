@@ -96,7 +96,7 @@ yt-dlp>=2023.12.30
 ## 🚀 Deployment
 
 ### ✅ Live App
-🎥 **[Try the YouTube RAG Chatbot](https://youtube-rag-chatbot.streamlit.app/)**
+🎥 **[Try VidQuest AI](https://vidquest-ai-ws6tqnozr87mictkusab3c.streamlit.app/)**
 
 ### Streamlit Cloud (For Your Own Deployment)
 1. Push code to GitHub
@@ -148,7 +148,7 @@ yt-dlp>=2023.12.30
 - [ ] YouTube playlist integration
 
 ## 🙏 Acknowledgments
-- Inspired by CampusX YouTube Channel
+- Inspired by [CampusX](https://www.youtube.com/@campusx-official) YouTube Channel
 - Thanks to OpenAI, LangChain, and Streamlit
 
 ## 📞 Contact
