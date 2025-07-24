@@ -10,6 +10,7 @@ import requests
 import json
 import os
 import ssl
+ssl._create_default_https_context = ssl._create_unverified_context
 
 # -----------------------------
 # 1. Load API Key
