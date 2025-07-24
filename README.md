@@ -2,7 +2,6 @@
 
 A **Retrieval-Augmented Generation (RAG)** chatbot that lets you chat with any YouTube video using its transcript. Ask questions about video content and get intelligent responses with timestamp references!
 
-
 ## ✨ Why VidQuest AI?
 
 Watching long videos just to find one key answer is time-consuming. VidQuest AI lets you:
@@ -11,7 +10,6 @@ Watching long videos just to find one key answer is time-consuming. VidQuest AI 
 ✅ Get a quick summary with key points
 
 Perfect for students, researchers, and curious minds who want fast insights from educational videos.
-
 
 ## ✨ Features
 
@@ -36,12 +34,16 @@ Perfect for students, researchers, and curious minds who want fast insights from
   <img src="assets/vidquest_summary_page2.jpg" width="45%">
 </p>
 
+## ✅ Live App
+
+[![Live App – VidQuest AI](https://img.shields.io/badge/🎥%20Try%20VidQuest%20AI-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white)](https://vidquest-ai-ws6tqnozr87mictkusab3c.streamlit.app/)
+
 ## 🚀 Quick Start
 
 ### 1. Clone & Install
 ```bash
-git clone https://github.com/ayushdave1369/youtube-rag-chatbot.git
-cd youtube-rag-chatbot
+git clone https://github.com/ayushdave1369/vidquest-ai.git
+cd vidquest-ai
 pip install -r requirements.txt
 ```
 
@@ -94,9 +96,6 @@ yt-dlp>=2023.12.30
 - **Transcript**: youtube-transcript-api, yt-dlp
 
 ## 🚀 Deployment
-
-### ✅ Live App
-🎥 **[Try VidQuest AI](https://vidquest-ai-ws6tqnozr87mictkusab3c.streamlit.app/)**
 
 ### Streamlit Cloud (For Your Own Deployment)
 1. Push code to GitHub
