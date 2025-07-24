@@ -25,12 +25,16 @@ Perfect for students, researchers, and curious minds who want fast insights from
 ## 📷 App Demo
 
 ### 🔗 Home & Transcript Processing
-![VidQuest Demo Page 1](assets/vidquest_demo_page1.jpg)
-![VidQuest Demo Page 2](assets/vidquest_demo_page2.jpg)
+<p align="center">
+  <img src="assets/vidquest_demo_page1.jpg" width="45%">
+  <img src="assets/vidquest_demo_page2.jpg" width="45%">
+</p>
 
 ### 📋 Summary Generation
-![VidQuest Summary Page 1](assets/vidquest_summary_page1.jpg)
-![VidQuest Summary Page 2](assets/vidquest_summary_page2.jpg)
+<p align="center">
+  <img src="assets/vidquest_summary_page1.jpg" width="45%">
+  <img src="assets/vidquest_summary_page2.jpg" width="45%">
+</p>
 
 ## 🚀 Quick Start
 
