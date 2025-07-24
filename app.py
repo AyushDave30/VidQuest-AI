@@ -457,11 +457,3 @@ if st.session_state["retriever"]:
 else:
     st.info("👆 Enter a YouTube video URL above to get started!")
 
-# Footer
-st.markdown("---")
-st.markdown(
-    """
-🔧 **Methods:**
-- **Simple API**: Uses youtube-transcript-api directly (faster but sometimes fails)
-- **yt-dlp**: Downloads subtitle files directly from YouTube (more reliable)
-)
