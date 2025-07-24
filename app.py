@@ -12,7 +12,6 @@ import requests
 import xml.etree.ElementTree as ET
 import os
 
-ssl._create_default_https_context = ssl._create_unverified_context
 
 # -----------------------------
 # 1. Load API Key
