@@ -15,9 +15,12 @@ load_dotenv()  # works locally if .env is present
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY") or st.secrets.get("OPENAI_API_KEY")
 
 if not OPENAI_API_KEY:
-    st.error("❌ OPENAI_API_KEY not found! Please set it in .env (local) or Streamlit Secrets (cloud).")
+    st.error(
+        "❌ OPENAI_API_KEY not found! Please set it in .env (local) or Streamlit Secrets (cloud)."
+    )
 else:
     os.environ["OPENAI_API_KEY"] = OPENAI_API_KEY
+
 
 # -----------------------------
 # 2. Streamlit Config & CSS
@@ -160,20 +163,26 @@ def process_question():
 # -----------------------------
 video_url = st.text_input("Paste YouTube Video URL:")
 
-if video_url and (
-    st.session_state["retriever"] is None or st.session_state["video_id"] != video_url
-):
-    try:
-        video_id = video_url.split("v=")[-1].split("&")[0]
-        transcript, timed_chunks = get_transcript(video_id)
-        vector_store = build_vector_store_from_text(transcript)
-        st.session_state["retriever"] = vector_store
-        st.session_state["video_id"] = video_url
-        st.session_state["timed_chunks"] = timed_chunks
-        st.session_state["messages"].clear()
-        st.success("✅ Transcript processed! You can start asking questions.")
-    except Exception as e:
-        st.error(f"❌ Error: {e}")
+if video_url:
+    if st.session_state.get("video_id") != video_url:
+        try:
+            # 🔥 Force clear previous session data when URL changes
+            st.cache_data.clear()
+            st.cache_resource.clear()
+
+            video_id = video_url.split("v=")[-1].split("&")[0]
+            transcript, timed_chunks = get_transcript(video_id)
+            vector_store = build_vector_store_from_text(transcript)
+
+            st.session_state["retriever"] = vector_store
+            st.session_state["video_id"] = video_url
+            st.session_state["timed_chunks"] = timed_chunks
+            st.session_state["messages"].clear()
+
+            st.success("✅ Transcript processed! You can start asking questions.")
+        except Exception as e:
+            st.error(f"❌ Error: {e}")
+
 
 # ✅ Clear input before rendering
 if st.session_state.get("clear_input"):
@@ -201,7 +210,7 @@ if st.button("🔝 Summarize Video (Top 5 Points)", key="summary_btn"):
             "sources": [],
         }
     )
-    st.experimental_rerun()
+    st.rerun()
 
 if st.session_state["messages"]:
     for i, msg in enumerate(st.session_state["messages"]):
@@ -228,4 +237,4 @@ if st.session_state["messages"]:
 
 if st.button("🗑️ Clear Chat History"):
     st.session_state["messages"].clear()
-    st.experimental_rerun()
+    st.rerun()
