@@ -464,10 +464,4 @@ st.markdown(
 🔧 **Methods:**
 - **Simple API**: Uses youtube-transcript-api directly (faster but sometimes fails)
 - **yt-dlp**: Downloads subtitle files directly from YouTube (more reliable)
-
-📝 **Requirements for yt-dlp method:**
-```bash
-pip install yt-dlp
-```
-"""
 )
