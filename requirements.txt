@@ -1,7 +1,9 @@
 streamlit
 langchain-community
 langchain-openai
-youtube-transcript-api
 python-dotenv
 faiss-cpu
 tiktoken
+youtube-transcript-api>=0.6.2
+certifi>=2025.1.0
+
