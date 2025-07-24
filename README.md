@@ -1,10 +1,17 @@
-# 🎥 YouTube RAG Chatbot
+# 🎥 VidQuest AI – Chat with Any YouTube Video
 
 A **Retrieval-Augmented Generation (RAG)** chatbot that lets you chat with any YouTube video using its transcript. Ask questions about video content and get intelligent responses with timestamp references!
 
-![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white)
-![Python](https://img.shields.io/badge/Python-3.8+-3776AB?style=for-the-badge&logo=python&logoColor=white)
-![OpenAI](https://img.shields.io/badge/OpenAI-412991?style=for-the-badge&logo=openai&logoColor=white)
+
+## ✨ Why VidQuest AI?
+
+Watching long videos just to find one key answer is time-consuming. VidQuest AI lets you:
+✅ Ask natural questions and get instant answers
+✅ Jump to the exact timestamp of the answer
+✅ Get a quick summary with key points
+
+Perfect for students, researchers, and curious minds who want fast insights from educational videos.
+
 
 ## ✨ Features
 
@@ -14,6 +21,16 @@ A **Retrieval-Augmented Generation (RAG)** chatbot that lets you chat with any Y
 - 🔍 **Semantic Search**: Find relevant content using AI-powered search
 - 💬 **Chat Interface**: Interactive conversation with chat history
 - 🎨 **Modern UI**: Clean, responsive design with dark theme
+
+## 📷 App Demo
+
+### 🔗 Home & Transcript Processing
+![VidQuest Demo Page 1](assets/vidquest_demo_page1.jpg)
+![VidQuest Demo Page 2](assets/vidquest_demo_page2.jpg)
+
+### 📋 Summary Generation
+![VidQuest Summary Page 1](assets/vidquest_summary_page1.jpg)
+![VidQuest Summary Page 2](assets/vidquest_summary_page2.jpg)
 
 ## 🚀 Quick Start
 
@@ -111,13 +128,6 @@ yt-dlp>=2023.12.30
 - Private/unlisted videos
 - Music videos (no meaningful captions)
 
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create feature branch: `git checkout -b feature-name`
-3. Make changes and test
-4. Submit pull request
-
 ## 🔒 Privacy
 
 - No data is stored permanently
@@ -134,17 +144,12 @@ yt-dlp>=2023.12.30
 - [ ] YouTube playlist integration
 
 ## 🙏 Acknowledgments
+Inspired by CampusX YouTube Channel
+Thanks to OpenAI, LangChain, and Streamlit
 
-- OpenAI for GPT models
-- LangChain for RAG framework
-- Streamlit for web interface
-- YouTube Transcript API developers
-- **Inspired by CampusX YouTube Channel**
-
-## 📞 Support
-
-- 🐛 **Issues**: [GitHub Issues](https://github.com/ayushdave1369/youtube-rag-chatbot/issues)
-- 📧 **Email**: ayushdave1369@gmail.com
+## 📞 Contact
+Author: Ayush Dave
+📧 Email: ayushdave1369@gmail.com
 
 ---
 
