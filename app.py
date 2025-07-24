@@ -87,25 +87,12 @@ if "clear_input" not in st.session_state:
 def get_transcript(video_id: str):
     import os
     from youtube_transcript_api import YouTubeTranscriptApi
-    from youtube_transcript_api._api import _TranscriptAPI
-    import requests
 
-    # ✅ Setup ScraperAPI Proxy
     scraper_key = os.getenv("SCRAPER_API_KEY")
-    proxy = f"http://scraperapi:{scraper_key}@proxy-server.scraperapi.com:8001"
+    os.environ["HTTP_PROXY"] = f"http://scraperapi:{scraper_key}@proxy-server.scraperapi.com:8001"
+    os.environ["HTTPS_PROXY"] = f"http://scraperapi:{scraper_key}@proxy-server.scraperapi.com:8001"
 
-    session = requests.Session()
-    session.proxies = {
-        "http": proxy,
-        "https": proxy
-    }
-
-    # ✅ Monkey patch the session in youtube_transcript_api
-    _TranscriptAPI._TranscriptAPI__session = session
-
-    api = YouTubeTranscriptApi()
-    transcript_list = api.fetch(video_id, languages=["en"])
-
+    transcript_list = YouTubeTranscriptApi().fetch(video_id, languages=["en"])
     full_text = " ".join(chunk.text for chunk in transcript_list)
     timed_chunks = [{"text": t.text, "start": t.start} for t in transcript_list]
     return full_text, timed_chunks
